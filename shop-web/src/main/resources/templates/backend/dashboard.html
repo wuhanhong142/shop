@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+    <title>一企一码</title>
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/regular.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/brands.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/solid.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/jam.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/eva-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/ui.jqgrid.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/smart_wizard_theme_circles.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/smart_wizard.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/jqtree.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/chosen.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/nouislider.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/ion.rangeSlider.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/date-range-picker.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/tiny-date-picker.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/ace.min.css">
+</head>
+
+<body>
+<div class="body-container">
+    <nav class="navbar navbar-expand-lg navbar-fixed navbar-blue">
+        <div class="navbar-inner">
+            <div class="navbar-intro justify-content-xl-between">
+                <button type="button" class="btn btn-burger burger-arrowed static collapsed ml-2 d-flex d-xl-none"
+                        data-toggle-mobile="sidebar" data-target="#sidebar" aria-controls="sidebar"
+                        aria-expanded="false" aria-label="Toggle sidebar">
+                    <span class="bars"></span>
+                </button>
+                <a class="navbar-brand text-white" href="javascript:void(0)">
+                    <i class="fa fa-home w-4 text-105 text-white-tp1"></i>
+                </a>
+                <button type="button" class="btn btn-burger mr-2 d-none d-xl-flex" data-toggle="sidebar"
+                        data-target="#sidebar" aria-controls="sidebar" aria-expanded="true" aria-label="Toggle sidebar">
+                    <span class="bars"></span>
+                </button>
+            </div>
+            <div class="navbar-content">
+            </div>
+            <div class="navbar-menu collapse navbar-collapse navbar-backdrop" id="navbarMenu">
+                <div class="navbar-nav">
+                    <ul class="nav">
+                        <li class="nav-item dropdown order-first order-lg-last">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <img id="id-navbar-user-image"
+                                     class="d-none d-lg-inline-block radius-round border-2 brc-white-tp1 mr-2 w-6"
+                                     src="../assets/image/avatar/avatar6.jpg" alt="Jason's Photo">
+                                <span class="d-inline-block d-lg-none d-xl-inline-block">
+                              <span class="text-90" id="id-user-welcome">欢迎您,</span>
+                    <span class="nav-user-name" th:text="${session.SESSION_KEY.user.userName}"></span>
+                    </span>
+                                <i class="caret fa fa-angle-down d-none d-xl-block"></i>
+                                <i class="caret fa fa-angle-left d-block d-lg-none"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-caret dropdown-menu-right dropdown-animated brc-primary-m3 py-1">
+                                <div class="d-none d-lg-block d-xl-none">
+                                    <div class="dropdown-header"
+                                         th:text="'欢迎您,' + ${session.SESSION_KEY.user.userName}"></div>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                                <a class="dropdown-item btn btn-outline-grey bgc-h-success-l3 btn-h-light-success btn-a-light-success"
+                                   href="javascript:void(0)" onclick="Tools.toSubPage({viewName:'resetPwd'})">
+                                    <i class="fa fa-cog text-success-m1 text-105 mr-1"></i>
+                                    密码修改
+                                </a>
+                                <div class="dropdown-divider brc-primary-l2"></div>
+                                <a class="dropdown-item btn btn-outline-grey bgc-h-secondary-l3 btn-h-light-secondary btn-a-light-secondary"
+                                   href="javascript:void(0)" onclick="logout()">
+                                    <i class="fa fa-power-off text-warning-d1 text-105 mr-1"></i>
+                                    退出登录
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="main-container bgc-white">
+        <div id="sidebar" class="sidebar sidebar-fixed expandable sidebar-light">
+            <div class="sidebar-inner">
+                <div class="ace-scroll flex-grow-1" data-ace-scroll="{}">
+
+                    <ul class="nav has-active-border active-on-right" id="id-div-sidebar">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div role="main" class="main-content">
+            <div class="page-content container container-plus" id="id-div-main-content">
+                <div class="page-header pb-2">
+                    <div class="text-center">
+                        <h1 class="page-title text-primary-d2 text-150" style="margin-top: auto; margin-bottom: auto;">
+                            欢迎使用在线订餐系统
+                        </h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/jquery.jqgrid.src.min.js"></script>
+<script src="../assets/js/jquery.smartWizard.min.js"></script>
+<script src="../assets/js/jquery.validate.min.js"></script>
+<script src="../assets/js/jquery.inputmask.min.js"></script>
+<script src="../assets/js/sweetalert2.all.min.js"></script>
+<script src="../assets/js/interact.min.js"></script>
+<script src="../assets/js/tree.jquery.min.js"></script>
+<script src="../assets/js/select2.min.js"></script>
+<script src="../assets/js/chosen.jquery.min.js"></script>
+<script src="../assets/js/autosize.min.js"></script>
+<script src="../assets/js/bootstrap-maxlength.min.js"></script>
+<script src="../assets/js/nouislider.min.js"></script>
+<script src="../assets/js/ion.rangeSlider.min.js"></script>
+<script src="../assets/js/jquery.bootstrap-touchspin.min.js"></script>
+<script src="../assets/js/date-range-picker.min.js"></script>
+<script src="../assets/js/moment.js"></script>
+<script src="../assets/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../assets/js/bootstrap-colorpicker.min.js"></script>
+<script src="../assets/js/iro.min.js"></script>
+<script src="../assets/js/jquery.knob.min.js"></script>
+<script src="../assets/js/ace.min.js"></script>
+<script src="../assets/js/tools.js"></script>
+<script src="../assets/js/uploadFile.js"></script>
+<script th:inline="javascript">
+
+    function logout() {
+        Tools.showConfirmDialog('确定退出系统吗?', '退出系统!', function (){
+            Tools.ajaxPost("/auth/logout", {}, function (res) {
+                if (res.success == false) {
+                    Tools.showError(res.errMessage)
+                } else {
+                    Tools.showConfirmDialog('成功', '退出成功!', function (){
+                        window.location.href = "/login"
+                    }, false )
+                }
+            })
+        }, true);
+    }
+
+    $(function () {
+        var resourceHtml = [[${resourceHtml}]]
+        $("#id-div-sidebar").append(resourceHtml);
+    })
+</script>
+</body>
+</html>

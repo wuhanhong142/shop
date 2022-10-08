@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div class="page-header">
+    <h1 class="page-title text-primary-d2">
+        个人信息修改
+        <small class="page-info text-secondary-d2">
+            <i class="fa fa-angle-double-right text-80"></i>
+            密码重置
+        </small>
+    </h1>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <h4 class="bgc-secondary-l4 text-dark-tp3 text-center text-140 mb-3 mx-3 py-25">密码重置</h4>
+        <div class="row">
+            <div class="col-12 col-lg-10 offset-lg-1 mt-3">
+                <form class="text-grey-d1 text-95" autocomplete="off" id="id-form-resetpwd">
+                    <div class="form-group row mx-0">
+                        <label class="col-sm-3 col-xl-3 col-form-label text-sm-right">旧密码</label>
+                        <div class="col-sm-9 pr-0 pr-sm-3">
+                            <input type="password" class="form-control brc-on-focus brc-success-m2 col-sm-8 col-md-8" name="oldPwd" id="oldPwd" placeholder="旧密码">
+                        </div>
+                    </div>
+
+                    <div class="form-group row mx-0">
+                        <label class="col-sm-3 col-xl-3 col-form-label text-sm-right">新密码</label>
+                        <div class="col-sm-9 pr-0 pr-sm-3">
+                            <input type="password" class="form-control brc-on-focus brc-success-m2 col-sm-8 col-md-8" name="newPwd" id="newPwd" placeholder="新密码">
+                        </div>
+                    </div>
+
+                    <div class="form-group row mx-0">
+                        <label class="col-sm-3 col-xl-3 col-form-label text-sm-right">确认新密码</label>
+                        <div class="col-sm-9 pr-0 pr-sm-3">
+                            <input type="password" class="form-control brc-on-focus brc-success-m2 col-sm-8 col-md-8" name="newPwdConfirm" id="newPwdConfirm" placeholder="确认新密码">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <hr class="border-double brc-dark-l3">
+                        <div class="form-group text-center mt-4 mb-3">
+                            <button type="button" onclick="submitResetPwd()" class="btn btn-outline-green radius-1 px-4 mx-1">
+                                提交
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary radius-1 px-3 mx-1">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+<script src="assets/js/md5.js"></script>
+<script>
+    function submitResetPwd() {
+        if ($("#id-form-resetpwd").valid()) {
+            Tools.ajaxPost("/auth/retPwd", {
+                oldPwd : md5($("#oldPwd").val()),
+                newPwd : md5($("#newPwd").val())
+            }, function (res) {
+                if (res && res.success === true && res.data === true) {
+                    Tools.showInfo("密码修改成功,请退出登录后重新登录系统");
+                } else {
+                    Tools.showError("密码修改失败")
+                }
+            })
+        }
+    }
+    $(function () {
+        Tools.validateForm("id-form-resetpwd", {
+            oldPwd: {
+                required: true
+            },
+            newPwd: {
+                required: true,
+                minlength: 6
+            },
+            newPwdConfirm: {
+                required: true,
+                minlength: 6,
+                equalTo: "#newPwd"
+            }
+        }, {
+            oldPwd: {
+                required: "旧密码必填."
+            },
+            newPwd: {
+                required: "新密码必填.",
+                minlength: "不能少于6位."
+            },
+            newPwdConfirm: {
+                required: "新密码必填.",
+                minlength: "不能少于6位.",
+                equalTo: "输入不一致"
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://101.43.124.61:3309/shop
+    username: root
+    password: P@ssw0rd
+logging:
+  level:
+    com.shop: debug
